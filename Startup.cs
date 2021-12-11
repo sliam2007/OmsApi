@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using OmsApi.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +27,15 @@ namespace OmsApi
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddAutoMapper(typeof(MapperInitializer));
+
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "OmsApi", Version = "v1" });
+                c.SwaggerDoc("v2", new OpenApiInfo { Title = "OmsApi", Version = "v2" });
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +45,7 @@ namespace OmsApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OmsApi v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v2/swagger.json", "OmsApi v2"));
             }
 
             app.UseRouting();
