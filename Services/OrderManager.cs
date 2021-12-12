@@ -32,7 +32,7 @@ namespace OmsApi.Services
                     {
                         if (serialNumber.Length == 0)
                         {
-                            result.error = String.Format("Serial number is invalid (gtin:{0}).",
+                            result.error = String.Format("Serial number has invalid length (gtin:{0}).",
                                 product.gtin);
 
                             return result;

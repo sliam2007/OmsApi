@@ -4,7 +4,6 @@ namespace OmsApi.Data
 {
     public class OrderProduct
     {
-
         public string gtin { get; set; }
 
         public int quantity { get; set; }

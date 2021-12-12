@@ -6,12 +6,12 @@ namespace OmsApi.Models
     public class CreateOrderDTO
     {
         [Required]
-        public string omsId { get; set; }                   // Unique OMS identifier.
+        public string omsId { get; set; }                   
 
         [Required]
-        public IList<OrderProductDTO> products { get; set; }   // List of products.
+        public IList<OrderProductDTO> products { get; set; }   
 
-        public OrderDetailsDTO orderDetails { get; set; }      // Additional order information. 
+        public OrderDetailsDTO orderDetails { get; set; }      
 
     }
 }

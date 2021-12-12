@@ -11,15 +11,11 @@ namespace OmsApi.Data
 
         public string factoryAddress { get; set; }
 
-
         public string factoryCountry { get; set; }
-
 
         public string productionLineId { get; set; }
 
-
         public string productCode { get; set; }
-
 
         public string productDescription { get; set; }
 
