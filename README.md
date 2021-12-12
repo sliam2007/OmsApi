@@ -16,12 +16,12 @@ POST
 ## Content-Type
 application/json
 
-## valid omsId values
+## Valid omsId values
 - 0645848
 - 0258963
 - 0158663
 
-## valid omsId/clientToken pairs
+## Valid omsId/clientToken pairs
 - 0645848 / 1cecc8fb-fb47-4c8a-af3d-d34c1ead8c4f
 - 0258963 / 1fa7d94a-9c3f-4af6-9924-2ddd0f93353e
 - 0158663 / 41062f80-8fb3-406b-8f9a-4a89035d0fa7
@@ -44,4 +44,12 @@ curl -X POST -H 'Content-Type: application/json' -H 'clientToken: 1cecc8fb-fb47-
     }
   ]
 }'
+```
+## Sample of JSON response
+```sh
+{
+    "omsId": "0645848",
+    "orderId": "9c5a10f6-3b7e-4761-bb72-4bb7b7796250",
+    "expectedCompletionTime": 940
+}
 ```
