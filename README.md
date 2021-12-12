@@ -33,7 +33,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'clientToken: 1cecc8fb-fb47-
   "products": [
     {
       "gtin": "01334567894339",
- "quantity": 3,      
+      "quantity": 3,      
       "serialNumberType": "SELF_MADE",
       "serialNumbers": [
         "XT6c84e",
@@ -45,4 +45,3 @@ curl -X POST -H 'Content-Type: application/json' -H 'clientToken: 1cecc8fb-fb47-
   ]
 }'
 ```
-
