@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace OmsApi.Models
+﻿namespace OmsApi.Models
 {
     public class CreateOrderResponse
     {

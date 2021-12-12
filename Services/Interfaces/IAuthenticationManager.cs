@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace OmsApi.Services.Interfaces
+﻿namespace OmsApi.Services.Interfaces
 {
     public interface IAuthenticationManager
     {

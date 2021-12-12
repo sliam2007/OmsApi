@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace OmsApi.Data
+﻿namespace OmsApi.Data
 {
     public class OrderDetails
     {

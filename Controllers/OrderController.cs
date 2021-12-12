@@ -3,11 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OmsApi.Data;
 using OmsApi.Models;
-using OmsApi.Services;
 using OmsApi.Services.Interfaces;
-using System;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace OmsApi.Controllers
 {
@@ -21,7 +17,7 @@ namespace OmsApi.Controllers
         private readonly IAuthenticationManager _authenticationManager;
         private readonly IOrderManager _orderManager;
 
-        public OrderController(IMapper mapper, 
+        public OrderController(IMapper mapper,
             IAuthenticationManager authenticationManager,
             IOrderManager orderManager
             )
@@ -64,7 +60,7 @@ namespace OmsApi.Controllers
             {
                 return BadRequest(result.error);
             }
- 
+
             return Ok(_mapper.Map<CreateOrderResponseDTO>(result));
 
         }

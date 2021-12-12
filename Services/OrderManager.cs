@@ -2,7 +2,6 @@
 using OmsApi.Models;
 using OmsApi.Services.Interfaces;
 using System;
-using System.Threading.Tasks;
 
 namespace OmsApi.Services
 {
@@ -10,20 +9,20 @@ namespace OmsApi.Services
     {
         public CreateOrderResponse CreateOrder(CreateOrder data)
         {
-            //response
+            // response
             CreateOrderResponse result = new();
 
             // valiate serialNumbers
             foreach (var product in data.products)
             {
-                if (product.serialNumberType== "SELF_MADE")
+                if (product.serialNumberType == "SELF_MADE")
                 {
-                    // an amount of serialNumbers must be equal to quantity
+                    // amount of serialNumbers must be equal to quantity
                     if (product.quantity != product.serialNumbers.Length)
                     {
                         result.error = String.Format("Amount of serialNumbers is not equal to product quantity (gtin:{0}).",
                             product.gtin);
-                        
+
                         return result;
                     }
 
