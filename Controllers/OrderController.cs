@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OmsApi.Data;
 using OmsApi.Models;
+using OmsApi.Services;
+using OmsApi.Services.Interfaces;
 using System;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -16,10 +18,17 @@ namespace OmsApi.Controllers
     {
 
         private readonly IMapper _mapper;
+        private readonly IAuthenticationManager _authenticationManager;
+        private readonly IOrderManager _orderManager;
 
-        public OrderController(IMapper mapper)
+        public OrderController(IMapper mapper, 
+            IAuthenticationManager authenticationManager,
+            IOrderManager orderManager
+            )
         {
             _mapper = mapper;
+            _authenticationManager = authenticationManager;
+            _orderManager = orderManager;
         }
 
         [HttpPost]
@@ -34,22 +43,29 @@ namespace OmsApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            Request.Headers.TryGetValue("clientToken", out var clientTokenValue);
-            if (clientTokenValue != "1cecc8fb-fb47-4c8a-af3d-d34c1ead8c4f")
+            // validate omsId
+            if (!_authenticationManager.ValidateOmsId(orderDTO.omsId))
+            {
+                return BadRequest("Invalid omsId.");
+            }
+
+            // validate clientToken
+            Request.Headers.TryGetValue("clientToken", out var clientToken);
+            if (!_authenticationManager.ValidateClientToken(orderDTO.omsId, clientToken))
             {
                 return BadRequest("Invalid client token.");
             }
 
-            var createOrder = _mapper.Map<CreateOrder>(orderDTO);
+            // create order
+            var createOrderData = _mapper.Map<CreateOrder>(orderDTO);
+            var result = _orderManager.CreateOrder(createOrderData);
 
-            CreateOrderResponse result = new();
-            result.omsId = orderDTO.omsId;
-
-            result.orderId = Guid.NewGuid().ToString();         // for example
-            Random rnd = new();                                 // for example 
-            result.expectedCompletionTime = Convert.ToInt16(Math.Round(10000 * rnd.NextDouble()));    // for example 
-
-            return Ok(result);
+            if (result.error != null)
+            {
+                return BadRequest(result.error);
+            }
+ 
+            return Ok(_mapper.Map<CreateOrderResponseDTO>(result));
 
         }
 

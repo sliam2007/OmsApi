@@ -2,7 +2,7 @@
 
 namespace OmsApi.Models
 {
-    public class CreateOrderResponse
+    public class CreateOrderResponseDTO
     {
         public string omsId { get; set; }
 

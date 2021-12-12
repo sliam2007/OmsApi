@@ -11,6 +11,7 @@ namespace OmsApi.Configurations
             CreateMap<CreateOrder, CreateOrderDTO>().ReverseMap();
             CreateMap<OrderDetails, OrderDetailsDTO>().ReverseMap();
             CreateMap<OrderProduct, OrderProductDTO>().ReverseMap();
+            CreateMap<CreateOrderResponse, CreateOrderResponseDTO>().ReverseMap();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace OmsApi.Data
 
         public string serialNumberType { get; set; }
 
-        public string serialNumbers { get; set; }
+        public string[] serialNumbers { get; set; }
 
         public string templateId { get; set; }
 

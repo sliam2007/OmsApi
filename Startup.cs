@@ -7,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using OmsApi.Configurations;
+using OmsApi.Services;
+using OmsApi.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,9 @@ namespace OmsApi
             services.AddAutoMapper(typeof(MapperInitializer));
 
             services.AddControllers();
+
+            services.AddScoped<IAuthenticationManager, AuthenticationManager>();
+            services.AddScoped<IOrderManager, OrderManager>();
 
             services.AddSwaggerGen(c =>
             {
